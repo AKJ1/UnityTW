@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Assets.Controls
 {
-    public enum ControlMethod
+    class StateHandler
     {
-        Keyboard,Joystick
+
     }
 }
