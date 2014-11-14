@@ -5,7 +5,9 @@ using System.Text;
 
 namespace Assets.Controls.Animation
 {
-    class AnimationVariables
+    static class AnimationVariables
     {
+        public static PlayerState currentState;
+        public static Character currentCharacter;
     }
 }

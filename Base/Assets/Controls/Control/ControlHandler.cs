@@ -30,7 +30,6 @@ namespace Assets.Controls
                 {
                     Debug.DebugBreak();
                 };
-
             }
         }
         #endregion
@@ -66,7 +65,6 @@ namespace Assets.Controls
         {
         }
         #endregion
-
         #region Controler Check Logic
         IEnumerator CheckControllerMovement()
         {;
@@ -96,7 +94,6 @@ namespace Assets.Controls
             }
         // ReSharper disable once FunctionNeverReturns
         }
-        #endregion
-        
+        #endregion        
     }
 }
