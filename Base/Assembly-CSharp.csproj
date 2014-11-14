@@ -46,17 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Camera\SmoothFollow.cs" />
-     <Compile Include="Assets\Controls\Animation\AnimationHandler.cs" />
-     <Compile Include="Assets\Controls\Animation\AnimationVariables.cs" />
-     <Compile Include="Assets\Controls\Animation\ExtraState.cs" />
-     <Compile Include="Assets\Controls\Animation\PlayerState.cs" />
-     <Compile Include="Assets\Controls\Animation\StateHandler.cs" />
-     <Compile Include="Assets\Controls\Control\AimHandler.cs" />
-     <Compile Include="Assets\Controls\Control\ControlHandler.cs" />
-     <Compile Include="Assets\Controls\Control\ControlMethod.cs" />
-     <Compile Include="Assets\Controls\Control\MovementHandler.cs" />
-     <Compile Include="Assets\Controls\Control\MovementVariables.cs" />
+     <Compile Include="Assets\Control Scripts\Animation\AnimationHandler.cs" />
+     <Compile Include="Assets\Control Scripts\Animation\AnimationVariables.cs" />
+     <Compile Include="Assets\Control Scripts\Animation\ExtraState.cs" />
+     <Compile Include="Assets\Control Scripts\Animation\PlayerState.cs" />
+     <Compile Include="Assets\Control Scripts\Animation\StateHandler.cs" />
+     <Compile Include="Assets\Control Scripts\Camera\SmoothFollow.cs" />
+     <Compile Include="Assets\Control Scripts\Control\AimHandler.cs" />
+     <Compile Include="Assets\Control Scripts\Control\ControlHandler.cs" />
+     <Compile Include="Assets\Control Scripts\Control\ControlMethod.cs" />
+     <Compile Include="Assets\Control Scripts\Control\MovementHandler.cs" />
+     <Compile Include="Assets\Control Scripts\Control\MovementVariables.cs" />
      <Compile Include="Assets\Equipment\IShootable.cs" />
      <Compile Include="Assets\Equipment\Weapons\Bullet.cs" />
      <Compile Include="Assets\Equipment\Weapons\Pistol.cs" />
