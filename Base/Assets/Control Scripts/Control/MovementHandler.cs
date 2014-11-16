@@ -56,16 +56,19 @@ namespace Assets.Controls
 
         void Update()
         {
-            Move();
+            if (MovementVariables.ControlsAvailable)
+            {
+                Move();   
+            }
             UpdateState();
         }
 
         public override void Start ()
         {
-            //base.Init(); What the fuck is wrong with this?!
-            this.MoveSpeed = 4;
-            this.MaxSpeed = this.MoveSpeed*1.10f;
-            this.TurnaroundTime = 0.1f;
+            MovementVariables.Init(); // HACK: Needs to be RUN ONCE IN THE ENTIRE PROGRAM 
+            this.MoveSpeed = MovementVariables.MoveSpeed;
+            this.MaxSpeed = MovementVariables.MaxSpeed;
+            this.TurnaroundTime = MovementVariables.TurnaroundTime;
         }
         
         #endregion

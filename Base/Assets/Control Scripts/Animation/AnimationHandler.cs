@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Controls.Animation;
 using UnityEngine;
 
 namespace Assets.Controls
@@ -15,8 +16,11 @@ namespace Assets.Controls
             switch (currentState)
             {
                 case PlayerState.Attacking:
-                    animator.Play("Attacking" + AnimationVariables)
-                    
+                    animator.Play("Attacking" + AnimationVariables.PlayerCharacter.Weapon.Type.ToString());
+                    break;
+                default:
+                    animator.Play(currentState.ToString());
+                    break;
             }
         }
         #region Unity Methods

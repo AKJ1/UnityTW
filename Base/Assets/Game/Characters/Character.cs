@@ -10,10 +10,25 @@ namespace Assets.Game.Characters
     {
         public abstract void Move();
         public abstract void TakeDamage();
+        public Weapon Weapon;
         public void Kill()
         {
             Destroy(this.gameObject);
         }
+
+    }
+
+    class Weapon
+    {
+        public string Name;
+        public WeaponType Type;
+    }
+
+    enum WeaponType
+    {
+        Hammer,
+        Shotgun,
+        Sword,
 
     }
 }
