@@ -62,14 +62,25 @@ namespace Assets.Control_Scripts.Control
 
         private IEnumerator Dodge()
         {
+            
             transform.rigidbody.velocity = gameObject.GetComponent<MovementHandler>().MovementDirection.normalized * dodgeSpeed;
             MovementVariables.ControlsAvailable = false;
             this.dodgeAvailable = false;
+            StartCoroutine(Animate());
             yield return new WaitForSeconds(this.dodgeTime);
             transform.rigidbody.velocity = Vector3.zero;
             MovementVariables.ControlsAvailable = true;
             yield return new WaitForSeconds(this.dodgeCooldown);
             this.dodgeAvailable = true;
+            yield break;
+        }
+
+        private IEnumerator Animate()
+        {
+            TrailRenderer trail = gameObject.GetComponent<TrailRenderer>();
+            trail.enabled = true;
+            yield return new WaitForSeconds(dodgeTime + trail.time*1.2f);
+            trail.enabled = false;
             yield break;
         }
         #endregion

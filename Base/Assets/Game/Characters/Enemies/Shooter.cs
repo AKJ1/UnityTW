@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Game.Characters.Friendly
+namespace Assets.Game.Characters.Enemies
 {
-    class FriendlyCharacter
+    class Shooter
     {
     }
 }

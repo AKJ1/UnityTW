@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Equipment
+namespace Assets.Game.Characters.Enemies
 {
-    interface IShootable
+    class Fighter
     {
-        void Shoot();
     }
 }
