@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_4;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_4;UNITY_4_5;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,39 +39,41 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Unity46/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Unity46/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Control Scripts\Animation\AnimationHandler.cs" />
-     <Compile Include="Assets\Control Scripts\Animation\AnimationVariables.cs" />
-     <Compile Include="Assets\Control Scripts\Animation\ExtraState.cs" />
-     <Compile Include="Assets\Control Scripts\Animation\PlayerState.cs" />
-     <Compile Include="Assets\Control Scripts\Animation\StateHandler.cs" />
-     <Compile Include="Assets\Control Scripts\Camera\SmoothFollow.cs" />
-     <Compile Include="Assets\Control Scripts\Control\AimHandler.cs" />
-     <Compile Include="Assets\Control Scripts\Control\ControlHandler.cs" />
-     <Compile Include="Assets\Control Scripts\Control\ControlMethod.cs" />
+     <Compile Include="Assets\Camera\SmoothFollow.cs" />
+     <Compile Include="Assets\ColliderEffect.cs" />
      <Compile Include="Assets\Control Scripts\Control\DodgeHandler.cs" />
-     <Compile Include="Assets\Control Scripts\Control\MovementHandler.cs" />
-     <Compile Include="Assets\Control Scripts\Control\MovementVariables.cs" />
-     <Compile Include="Assets\Equipment\IShootable.cs" />
-     <Compile Include="Assets\Equipment\Weapons\Bullet.cs" />
-     <Compile Include="Assets\Equipment\Weapons\Pistol.cs" />
+     <Compile Include="Assets\Controls\Animation\AnimationHandler.cs" />
+     <Compile Include="Assets\Controls\Animation\AnimationVariables.cs" />
+     <Compile Include="Assets\Controls\Animation\ExtraState.cs" />
+     <Compile Include="Assets\Controls\Animation\PlayerState.cs" />
+     <Compile Include="Assets\Controls\Animation\StateHandler.cs" />
+     <Compile Include="Assets\Controls\Control\AimHandler.cs" />
+     <Compile Include="Assets\Controls\Control\AttackHandler.cs" />
+     <Compile Include="Assets\Controls\Control\ControlHandler.cs" />
+     <Compile Include="Assets\Controls\Control\ControlMethod.cs" />
+     <Compile Include="Assets\Controls\Control\MovementHandler.cs" />
+     <Compile Include="Assets\Controls\Control\MovementVariables.cs" />
      <Compile Include="Assets\Game\Characters\Character.cs" />
      <Compile Include="Assets\Game\Characters\CharacterTypes.cs" />
-     <Compile Include="Assets\Game\Characters\Friendly\FriendlyCharacter.cs" />
-     <Compile Include="Assets\Game\Characters\IAttacks.cs" />
-     <Compile Include="Assets\Game\Characters\IControlable.cs" />
-     <Compile Include="Assets\Game\Characters\IKillable.cs" />
-     <Compile Include="Assets\Game\Characters\IMovable.cs" />
-     <Compile Include="Assets\Game\Characters\Player\Player.cs" />
+     <Compile Include="Assets\Game\Characters\Enemies\Charger.cs" />
+     <Compile Include="Assets\Game\Characters\Enemies\Exploder.cs" />
+     <Compile Include="Assets\Game\Characters\Enemies\Fighter.cs" />
+     <Compile Include="Assets\Game\Characters\Enemies\Shooter.cs" />
+     <Compile Include="Assets\Game\Characters\Player.cs" />
+     <Compile Include="Assets\Game\Equipment\Sword.cs" />
+     <Compile Include="Assets\Game\Equipment\SwordHitEffects.cs" />
+     <Compile Include="Assets\Game\Equipment\Weapon.cs" />
      <Compile Include="Assets\UI\Button.cs" />
      <Compile Include="Assets\UI\ButtonWrapper.cs" />
      <Compile Include="Assets\UI\IClickable.cs" />
+     <Compile Include="Assets\Utility\Coroutiner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

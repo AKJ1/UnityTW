@@ -9,14 +9,13 @@ namespace Assets.Game.Equipment
 {
     class SwordHitEffects : MonoBehaviour
     {
-        void OnCollisionEnter(Collision collision)
+        public float Damage;
+        void OnTriggerEnter(Collider collision)
         {
-            Debug.Log("something something dangerzone");
-            Debug.Log("kek1");
             if (collision.transform.tag == "Character")
             {
-                Debug.Log("kek2");
                 Character victim = collision.gameObject.GetComponent<Character>();
+                victim.Health -= Damage;
                 Debug.Log(victim.Health);
             }
         }

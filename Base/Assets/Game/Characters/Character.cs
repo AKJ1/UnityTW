@@ -19,19 +19,24 @@ namespace Assets.Game.Characters
             get { return this.health; }
             set
             {
-                this.DamageTaken();
                 if (value <= 0)
                 {
                     this.Kill();
                 }
                 else
                 {
-                    this.health = value;
+                    if (!Invulnerable)
+                    {
+                        this.health = value;
+                        CurrentHealth = health;
+                        this.DamageTaken();
+                    }
                 }
                 
             }
         }
 
+        public float CurrentHealth;
         public int MaxHealth;
         public float Energy;
         public float Stamina;

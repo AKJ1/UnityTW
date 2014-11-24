@@ -25,7 +25,6 @@ namespace Assets.Game.Characters
         {
 
             this.Weapon = gameObject.AddComponent<Sword>();
-            this.MaxHealth = 100;
             this.Health = MaxHealth;
         }
     }

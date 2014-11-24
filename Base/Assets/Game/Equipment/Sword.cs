@@ -13,11 +13,16 @@ namespace Assets.Game.Equipment
                 Heat();
                 this.OnCooldown = true;
                 StartCoroutine(Heat());
+                
                 GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube); // change with animation prefab;
-                go.collider.isTrigger = false;
+
+                SwordHitEffects she = go.AddComponent<SwordHitEffects>(); // Done for collision handling
+                she.Damage = this.Damage;
+                var rb = go.AddComponent<Rigidbody>();
+                rb.isKinematic = true;
+                go.collider.isTrigger = true;
                 go.transform.parent = transform;
                 go.transform.position = (transform.rotation * -transform.forward)+ transform.position;
-                go.AddComponent<SwordHitEffects>(); // Done for collision handling
                 StartCoroutine(DestroyProjectile(go));
             }
         }

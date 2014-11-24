@@ -39,7 +39,7 @@ namespace Assets.Game.Equipment
         //        Character victim = c.gameObject.GetComponent<Character>();
         //        ApplyDamage(victim);
         //    }
-            
+
         //}
 
     }
