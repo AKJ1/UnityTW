@@ -1,31 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Assets.Game.Equipment;
 
 namespace Assets.Game.Characters
 {
-    class Player : Character
+    class GenericEnemy : Character
     {
-        public bool isBlocking;
-
-        private void Dodge()
-        {
-            
-        }
-
-        void Move()
-        {
-            
-        }
-
         void Start()
         {
-            this.transform.tag = "Player";
+            this.transform.tag = "Enemy";
             this.Weapon = gameObject.AddComponent<Sword>();
             this.Health = MaxHealth;
+            this.InvulnerabilityTime = 0.10f;
         }
     }
 }

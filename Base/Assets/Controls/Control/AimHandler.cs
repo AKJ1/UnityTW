@@ -10,6 +10,8 @@ namespace Assets.Controls
     {
         public Vector3 AimDirection;
         private ControlDelegate activeScheme;
+
+        private LayerMask mask = 8;
         #region Events
         private void SwitchMovement(object sender, ControlMethod ctrl)
         {
@@ -33,7 +35,7 @@ namespace Assets.Controls
             this.Controller = MovementVariables.Controller;
         }
 
-        void Update()
+        void LateUpdate()
         {
             if (activeScheme != null)
             {
@@ -68,7 +70,7 @@ namespace Assets.Controls
             {
                 Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, 200f, ~LayerMask.NameToLayer("AimMesh")))
                 {
                     Vector3 targetPosition = hit.point - transform.position;
                     targetPosition.Normalize();

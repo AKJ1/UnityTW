@@ -12,7 +12,8 @@ namespace Assets.Game.Characters
     {
         //public abstract void Move(); Implemented 
         public event Action DamageTaken;
-        public const float InvulnerabilityTime = 0.5f;
+        private bool flashing;
+        protected float InvulnerabilityTime = 0.5f;
 
         public float Health
         {
@@ -28,7 +29,6 @@ namespace Assets.Game.Characters
                     if (!Invulnerable)
                     {
                         this.health = value;
-                        CurrentHealth = health;
                         this.DamageTaken();
                     }
                 }
@@ -36,7 +36,8 @@ namespace Assets.Game.Characters
             }
         }
 
-        public float CurrentHealth;
+        public Color DamagedColor = new Color(255, 0, 0);
+        public Color NormalColor = new Color(255,255,255);
         public int MaxHealth;
         public float Energy;
         public float Stamina;
@@ -59,6 +60,23 @@ namespace Assets.Game.Characters
             Destroy(this.gameObject);
         }
 
+        public virtual void TakeDamage(float damage)
+        {
+            this.Health -= damage;
+            StartCoroutine(FlashRed());
+
+        }
+
+        void OnTriggerEnter(Collider col)
+        {
+            Debug.Log(col.transform);
+        }
+        protected IEnumerator FlashRed()
+        {
+                gameObject.renderer.material.color = DamagedColor;
+                yield return new WaitForSeconds(InvulnerabilityTime*2);
+                gameObject.renderer.material.color = NormalColor;
+        }
         public IEnumerator GoInvulnerable()
         {
             this.Invulnerable = true;
