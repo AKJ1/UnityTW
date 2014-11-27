@@ -69,10 +69,16 @@
      <Compile Include="Assets\Game\Characters\Enemies\Shooter.cs" />
      <Compile Include="Assets\Game\Characters\GenericEnemy.cs" />
      <Compile Include="Assets\Game\Characters\Player.cs" />
+     <Compile Include="Assets\Game\Equipment\Dagger.cs" />
+     <Compile Include="Assets\Game\Equipment\DaggerHitEffects.cs" />
+     <Compile Include="Assets\Game\Equipment\Hammer.cs" />
+     <Compile Include="Assets\Game\Equipment\HammerHitEffects.cs" />
+     <Compile Include="Assets\Game\Equipment\HitEffects.cs" />
      <Compile Include="Assets\Game\Equipment\Sword.cs" />
      <Compile Include="Assets\Game\Equipment\SwordHitEffects.cs" />
      <Compile Include="Assets\Game\Equipment\Weapon.cs" />
      <Compile Include="Assets\Game\Equipment\WeaponGlobals.cs" />
+     <Compile Include="Assets\GameGlobals.cs" />
      <Compile Include="Assets\MeleeWeaponTrail\Scripts\Interpolate.cs" />
      <Compile Include="Assets\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
      <Compile Include="Assets\UI\Button.cs" />

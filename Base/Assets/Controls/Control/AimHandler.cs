@@ -70,7 +70,7 @@ namespace Assets.Controls
             {
                 Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 200f, ~LayerMask.NameToLayer("AimMesh")))
+                if (Physics.Raycast(ray, out hit, 200f, 1 << LayerMask.NameToLayer("AimMesh")))
                 {
                     Vector3 targetPosition = hit.point - transform.position;
                     targetPosition.Normalize();

@@ -13,7 +13,7 @@ namespace Assets.Game.Characters
             this.transform.tag = "Enemy";
             this.Weapon = gameObject.AddComponent<Sword>();
             this.Health = MaxHealth;
-            this.InvulnerabilityTime = 0.10f;
+            this.InvulnerabilityTime = 0.02f;
         }
     }
 }

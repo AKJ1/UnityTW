@@ -29,7 +29,15 @@ namespace Assets.Game.Equipment
         {
             person.Health -= this.Damage;
         }
+        protected IEnumerator DestroyProjectile(GameObject go, float animationDelay)
+        {
+            go.gameObject.SetActive(false);
+            yield return new WaitForSeconds(animationDelay);
+            go.gameObject.SetActive(true);
+            yield return new WaitForSeconds(this.Duration);
+            Destroy(go);
 
+        }
         //void OnCollisionEnter(Collision c)
         //{
         //    Debug.Log("fucko");

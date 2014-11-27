@@ -10,10 +10,17 @@ namespace Assets.Game.Equipment
     {
         public static GameObject SwordPrefab;
         public GameObject swordPrefab;
+        public static GameObject DaggerPrefab;
+        public GameObject daggerPrefab;
+        public static GameObject HammerPrefab;
+        public GameObject hammerPrefab;
+
 
         void Start()
         {
             SwordPrefab = swordPrefab;
+            DaggerPrefab = daggerPrefab;
+            HammerPrefab = hammerPrefab;
         }
     }
 }

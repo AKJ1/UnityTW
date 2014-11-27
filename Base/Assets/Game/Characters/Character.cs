@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Assets.Game.Equipment;
@@ -67,10 +68,17 @@ namespace Assets.Game.Characters
 
         }
 
-        void OnTriggerEnter(Collider col)
+        protected IEnumerator DamageIndicator(float damage)
         {
-            Debug.Log(col.transform);
+            GameObject textObject = new GameObject(this.name + "Damage Text");
+            GUIText text = textObject.AddComponent<GUIText>();
+            text.text = damage.ToString();
+            text.font = GameGlobals.DamageFont;
+            text.material.color = damage > 0 ? new Color(255, 0, 0) : new Color(0, 255, 0);
+            yield return new WaitForSeconds(0.3f);
+            Destroy(text);
         }
+
         protected IEnumerator FlashRed()
         {
                 gameObject.renderer.material.color = DamagedColor;
