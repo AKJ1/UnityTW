@@ -13,6 +13,8 @@ namespace Assets.Game.Characters
     {
         //public abstract void Move(); Implemented 
         public event Action DamageTaken;
+        public GameObject deathAnimation;
+        public GameObject bleedAnimation;
         private bool flashing;
         protected float InvulnerabilityTime = 0.5f;
 
@@ -29,8 +31,8 @@ namespace Assets.Game.Characters
                 {
                     if (!Invulnerable)
                     {
-                        this.health = value;
                         this.DamageTaken();
+                        this.health = value;
                     }
                 }
                 
@@ -58,12 +60,15 @@ namespace Assets.Game.Characters
         }
         public void Kill()
         {
+            Instantiate(deathAnimation, (transform.position - transform.forward), Quaternion.Euler(0, 0, 0));
             Destroy(this.gameObject);
         }
 
         public virtual void TakeDamage(float damage)
         {
             this.Health -= damage;
+            GameObject blood = (GameObject) Instantiate(bleedAnimation, transform.position, Quaternion.Euler(0, 0, 0));
+            blood.transform.parent = transform;
             StartCoroutine(FlashRed());
 
         }
@@ -82,7 +87,7 @@ namespace Assets.Game.Characters
         protected IEnumerator FlashRed()
         {
                 gameObject.renderer.material.color = DamagedColor;
-                yield return new WaitForSeconds(InvulnerabilityTime*2);
+                yield return new WaitForSeconds(0.2f);
                 gameObject.renderer.material.color = NormalColor;
         }
         public IEnumerator GoInvulnerable()
