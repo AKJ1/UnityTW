@@ -72,7 +72,7 @@ namespace Assets.Controls
         {
             #region Movement Values
             MoveSpeed = 3.5f;
-            MaxSpeed =4.5f;
+            MaxSpeed = 4.5f;
             TurnaroundTime = 0.1f;
             MovementDecay = 3.0f;
             #endregion

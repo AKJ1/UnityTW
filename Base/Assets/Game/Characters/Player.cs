@@ -24,7 +24,7 @@ namespace Assets.Game.Characters
         void Start()
         {
             this.transform.tag = "Player";
-            this.Weapon = gameObject.AddComponent<Hammer>();
+            this.Weapon = gameObject.AddComponent<Bow>();
             this.Health = MaxHealth;
         }
     }

@@ -18,7 +18,7 @@ namespace Assets.Game.Equipment
         public abstract void Attack();
 
 
-        protected IEnumerator Heat()
+        protected virtual IEnumerator Heat()
         {
             this.OnCooldown = true;
             yield return new WaitForSeconds(this.Cooldown);

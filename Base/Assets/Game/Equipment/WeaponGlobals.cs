@@ -14,6 +14,10 @@ namespace Assets.Game.Equipment
         public GameObject daggerPrefab;
         public static GameObject HammerPrefab;
         public GameObject hammerPrefab;
+        public static GameObject BowProjectile;
+        public GameObject bowProjectile;
+        public static GameObject BowProjectileExact;
+        public GameObject bowProjectileExact;
 
 
         void Start()
@@ -21,6 +25,8 @@ namespace Assets.Game.Equipment
             SwordPrefab = swordPrefab;
             DaggerPrefab = daggerPrefab;
             HammerPrefab = hammerPrefab;
+            BowProjectile = bowProjectile;
+            BowProjectileExact = bowProjectileExact;
         }
     }
 }

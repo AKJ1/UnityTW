@@ -1,109 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{3E8CD1B9-F3D9-5977-B930-E161D52454B0}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<BaseDirectory>Assets</BaseDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E8CD1B9-F3D9-5977-B930-E161D52454B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AddVisualizer.cs" />
-     <Compile Include="Assets\Camera\SmoothFollow.cs" />
-     <Compile Include="Assets\ColliderEffect.cs" />
-     <Compile Include="Assets\Colorize.cs" />
-     <Compile Include="Assets\Control Scripts\Control\DodgeHandler.cs" />
-     <Compile Include="Assets\Controls\Animation\AnimationHandler.cs" />
-     <Compile Include="Assets\Controls\Animation\AnimationVariables.cs" />
-     <Compile Include="Assets\Controls\Animation\ExtraState.cs" />
-     <Compile Include="Assets\Controls\Animation\PlayerState.cs" />
-     <Compile Include="Assets\Controls\Animation\StateHandler.cs" />
-     <Compile Include="Assets\Controls\Control\AimHandler.cs" />
-     <Compile Include="Assets\Controls\Control\AttackHandler.cs" />
-     <Compile Include="Assets\Controls\Control\ControlHandler.cs" />
-     <Compile Include="Assets\Controls\Control\ControlMethod.cs" />
-     <Compile Include="Assets\Controls\Control\MovementHandler.cs" />
-     <Compile Include="Assets\Controls\Control\MovementVariables.cs" />
-     <Compile Include="Assets\Game\Characters\Character.cs" />
-     <Compile Include="Assets\Game\Characters\CharacterTypes.cs" />
-     <Compile Include="Assets\Game\Characters\Enemies\Charger.cs" />
-     <Compile Include="Assets\Game\Characters\Enemies\Exploder.cs" />
-     <Compile Include="Assets\Game\Characters\Enemies\Fighter.cs" />
-     <Compile Include="Assets\Game\Characters\Enemies\Shooter.cs" />
-     <Compile Include="Assets\Game\Characters\GenericEnemy.cs" />
-     <Compile Include="Assets\Game\Characters\Player.cs" />
-     <Compile Include="Assets\Game\Equipment\Dagger.cs" />
-     <Compile Include="Assets\Game\Equipment\DaggerHitEffects.cs" />
-     <Compile Include="Assets\Game\Equipment\Hammer.cs" />
-     <Compile Include="Assets\Game\Equipment\HammerHitEffects.cs" />
-     <Compile Include="Assets\Game\Equipment\HitEffects.cs" />
-     <Compile Include="Assets\Game\Equipment\Sword.cs" />
-     <Compile Include="Assets\Game\Equipment\SwordHitEffects.cs" />
-     <Compile Include="Assets\Game\Equipment\Weapon.cs" />
-     <Compile Include="Assets\Game\Equipment\WeaponGlobals.cs" />
-     <Compile Include="Assets\GameGlobals.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX2_Demo.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX2_AutoRotate.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutodestructWhenNoChildren.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_ShurikenThreadFix.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Spawn System\CFX_SpawnSystem.cs" />
-     <Compile Include="Assets\UI\Button.cs" />
-     <Compile Include="Assets\UI\ButtonWrapper.cs" />
-     <Compile Include="Assets\UI\IClickable.cs" />
-     <Compile Include="Assets\Utility\Coroutiner.cs" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Releases Notes.txt" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
-     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_WaterWiggle.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Readme.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\AddVisualizer.cs" />
+    <Compile Include="Assets\Camera\SmoothFollow.cs" />
+    <Compile Include="Assets\ColliderEffect.cs" />
+    <Compile Include="Assets\Colorize.cs" />
+    <Compile Include="Assets\Control Scripts\Control\DodgeHandler.cs" />
+    <Compile Include="Assets\Controls\Animation\AnimationHandler.cs" />
+    <Compile Include="Assets\Controls\Animation\AnimationVariables.cs" />
+    <Compile Include="Assets\Controls\Animation\ExtraState.cs" />
+    <Compile Include="Assets\Controls\Animation\PlayerState.cs" />
+    <Compile Include="Assets\Controls\Animation\StateHandler.cs" />
+    <Compile Include="Assets\Controls\Control\AimHandler.cs" />
+    <Compile Include="Assets\Controls\Control\AttackHandler.cs" />
+    <Compile Include="Assets\Controls\Control\ControlHandler.cs" />
+    <Compile Include="Assets\Controls\Control\ControlMethod.cs" />
+    <Compile Include="Assets\Controls\Control\MovementHandler.cs" />
+    <Compile Include="Assets\Controls\Control\MovementVariables.cs" />
+    <Compile Include="Assets\Game\Characters\Character.cs" />
+    <Compile Include="Assets\Game\Characters\CharacterTypes.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\Charger.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\Exploder.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\Fighter.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\Shooter.cs" />
+    <Compile Include="Assets\Game\Characters\GenericEnemy.cs" />
+    <Compile Include="Assets\Game\Characters\Player.cs" />
+    <Compile Include="Assets\Game\Equipment\BowHitEffects.cs" />
+    <Compile Include="Assets\Game\Equipment\Bow.cs" />
+    <Compile Include="Assets\Game\Equipment\Dagger.cs" />
+    <Compile Include="Assets\Game\Equipment\DaggerHitEffects.cs" />
+    <Compile Include="Assets\Game\Equipment\Hammer.cs" />
+    <Compile Include="Assets\Game\Equipment\HammerHitEffects.cs" />
+    <Compile Include="Assets\Game\Equipment\HitEffects.cs" />
+    <Compile Include="Assets\Game\Equipment\RocketLauncher.cs" />
+    <Compile Include="Assets\Game\Equipment\Sword.cs" />
+    <Compile Include="Assets\Game\Equipment\SwordHitEffects.cs" />
+    <Compile Include="Assets\Game\Equipment\Weapon.cs" />
+    <Compile Include="Assets\Game\Equipment\WeaponGlobals.cs" />
+    <Compile Include="Assets\GameGlobals.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX2_Demo.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX2_AutoRotate.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutodestructWhenNoChildren.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_ShurikenThreadFix.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Spawn System\CFX_SpawnSystem.cs" />
+    <Compile Include="Assets\UI\Button.cs" />
+    <Compile Include="Assets\UI\ButtonWrapper.cs" />
+    <Compile Include="Assets\UI\IClickable.cs" />
+    <Compile Include="Assets\Utility\Coroutiner.cs" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Releases Notes.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+    <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_WaterWiggle.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Readme.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -113,5 +117,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
