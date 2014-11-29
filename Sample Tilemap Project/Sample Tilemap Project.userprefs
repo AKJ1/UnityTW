@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TileMap_G\TileMap.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TileMap_G\TileMapWalls.cs">
     <Files>
-      <File FileName="Assets\Scripts\TileMap_G\TileMap.cs" Line="35" Column="1" />
+      <File FileName="Assets\Scripts\TileMap_G\TileMapWalls.cs" Line="34" Column="1" />
+      <File FileName="Assets\Scripts\TileMap_G\TileMapMouse.cs" Line="45" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
