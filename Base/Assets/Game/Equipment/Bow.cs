@@ -12,9 +12,12 @@ namespace Assets.Game.Equipment
         public GameObject BowProjectile = WeaponGlobals.BowProjectile;
         public GameObject ExactProjectile = WeaponGlobals.BowProjectileExact;
         public float ActiveDamage;
+        public float ElapsedTime;
+        public float PerfectWindowLength;
         public int ProjectilePower;
+        public float ChargeTime;
 
-        private bool canPenetrate;
+        private bool perfectShot;
         private Color exactColor = new Color(0,255,255);
         private Color normalColor = new Color();
 
@@ -31,44 +34,59 @@ namespace Assets.Game.Equipment
             bool buttonHeld = Input.GetButton("Fire");
             while (buttonHeld)
             {
+                bool windowStarted = false;
                 buttonHeld = Input.GetButton("Fire");
-                if (this.ProjectilePower >= 75 && this.ProjectilePower < 90)
+                if (this.ElapsedTime < this.ChargeTime)
                 {
-                    renderer.material.color = exactColor;
-                }
-                else if (renderer.material.color == exactColor)
+                    this.ElapsedTime += Time.deltaTime;
+                }else if(!windowStarted)
                 {
-                    renderer.material.color = normalColor;
-                }
-
-                if (this.ProjectilePower < 100)
-                {
-                    this.ProjectilePower += 1;
+                    StartCoroutine(PerfectWindow());
+                    windowStarted = true;
                 }
                 yield return new WaitForFixedUpdate();
             }
-            Debug.Log(this.ProjectilePower);
+            ProjectilePower = (int) (this.ElapsedTime/this.ChargeTime*100);
+            Debug.Log(perfectShot);
             FireProjectile();
+            if (ProjectilePower == 100)
+            {
+                this.OnCooldown = false;
+            }
             this.ProjectilePower = 0;
+            this.ElapsedTime = 0;
             if (renderer.material.color == exactColor)
             {
                 renderer.material.color = normalColor;
             }
         }
 
+        private IEnumerator PerfectWindow()
+        {
+            this.perfectShot = true;
+            renderer.material.color = exactColor;
+            yield return new WaitForSeconds(PerfectWindowLength);
+            renderer.material.color = normalColor;
+            yield return new WaitForSeconds(0.05f);
+            this.perfectShot = false;
+        }
+
         private void FireProjectile()
         {
 
             float projectileRatio = DetermineRatio();
+            this.ActiveDamage = this.Damage * projectileRatio;
 
-            GameObject projectile = this.canPenetrate ? (GameObject)Instantiate(ExactProjectile) : (GameObject)Instantiate(BowProjectile); // change with animation prefab;
+            GameObject projectile = this.perfectShot ? (GameObject)Instantiate(ExactProjectile) : (GameObject)Instantiate(BowProjectile); // change with animation prefab;
             BowHitEffects hitEffects = projectile.AddComponent<BowHitEffects>(); // Done for collision handling
+
+
             projectile.transform.position = (transform.position + transform.up * 2f);
             projectile.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0);
-            if (this.canPenetrate)
+            if (this.perfectShot)
             {
                 hitEffects.CanPenetrate = true;
-                this.canPenetrate = false;
+                this.perfectShot = false;
             }
             hitEffects.Damage = this.ActiveDamage;
             projectile.rigidbody.velocity = Quaternion.Euler(0, transform.rotation.y, 0) * transform.up * projectileRatio * 30;
@@ -79,41 +97,30 @@ namespace Assets.Game.Equipment
         {
             float projectileRatio = 0.50f;
 
-            if (this.ProjectilePower > 0 && this.ProjectilePower < 25)
-            {
-                projectileRatio = 0.20f;
-                this.ActiveDamage = this.Damage * 0.30f;
-            }
-            else if (this.ProjectilePower > 25 && this.ProjectilePower <= 50)
+            if (ProjectilePower < 50)
             {
                 projectileRatio = 0.50f;
-                this.ActiveDamage = this.Damage * 0.50f;
             }
-            else if (this.ProjectilePower > 50 && this.ProjectilePower <= 75)
+            else if (this.perfectShot)
             {
-                projectileRatio = 0.75f;
-                this.ActiveDamage = this.Damage * 0.80f;
+                projectileRatio = 2f;
             }
-            else if (this.ProjectilePower > 75 && this.ProjectilePower <= 95)
+            else
             {
-                projectileRatio = 2.0f;
-                this.ActiveDamage = this.Damage * 1.30f;
-                canPenetrate = true;
+                projectileRatio = 0.01f * ProjectilePower;
             }
-            else if (this.ProjectilePower > 95 && this.ProjectilePower <= 100)
-            {
-                projectileRatio = 1.00f;
-                this.ActiveDamage = this.Damage * 1.0f;
-            }
+            
             return projectileRatio;
 
         }
         void Start()
         {
             this.normalColor = renderer.material.color;
-            Damage = 150f;
+            Damage = 100f;
             Cooldown = 1.2f;
             Duration = 5.0f;
+            ChargeTime = 1.2f;
+            PerfectWindowLength = 0.2f;
         }
     }
 }

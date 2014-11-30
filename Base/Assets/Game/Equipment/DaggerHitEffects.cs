@@ -12,6 +12,7 @@ namespace Assets.Game.Equipment
         public float Damage;
         public float Duration;
         private List<GameObject> alreadyHit = new List<GameObject>();
+        public Dagger Source;
         void OnTriggerEnter(Collider target)
         {
             if (target.transform.tag == "Enemy" && !alreadyHit.Contains(target.gameObject))
@@ -19,6 +20,7 @@ namespace Assets.Game.Equipment
                 Character victim = target.gameObject.GetComponent<Character>();
                 victim.TakeDamage(Damage);
                 Debug.Log(victim.Health);
+                Source.HitAchieved();
             }
 
             alreadyHit.Add(target.gameObject);
