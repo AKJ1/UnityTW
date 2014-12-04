@@ -30,8 +30,8 @@ namespace Assets.Game.Characters
                 else
                 {
                     if (!Invulnerable)
-                    {
-                        this.DamageTaken();
+                    {   
+                        this.DamageTaken();   
                         this.health = value;
                     }
                 }
@@ -60,17 +60,36 @@ namespace Assets.Game.Characters
         }
         public void Kill()
         {
+            this.Invulnerable = true;
             Instantiate(deathAnimation, (transform.position - transform.forward), Quaternion.Euler(0, 0, 0));
             Destroy(this.gameObject);
         }
 
         public virtual void TakeDamage(float damage)
         {
-            this.Health -= damage;
-            GameObject blood = (GameObject) Instantiate(bleedAnimation, transform.position, Quaternion.Euler(0, 0, 0));
-            blood.transform.parent = transform;
-            StartCoroutine(FlashRed());
+            if (!Invulnerable)
+            {
+                this.Health -= damage;
+                GameObject blood = (GameObject)Instantiate(bleedAnimation, transform.position, Quaternion.Euler(0, 0, 0));
+                blood.transform.parent = transform;
+                StartCoroutine(FlashRed());
+            }
+        }
 
+        public virtual void TakeMinorDamage(float damage)
+        {
+            if (!Invulnerable)
+            {
+                this.health -= damage;
+                if (this.health <= 0)
+                {
+                    Kill();
+                }
+                GameObject blood = (GameObject)Instantiate(bleedAnimation, transform.position, Quaternion.Euler(0, 0, 0));
+                blood.transform.parent = transform;
+                StartCoroutine(FlashRed());
+
+            }
         }
 
         protected IEnumerator DamageIndicator(float damage)

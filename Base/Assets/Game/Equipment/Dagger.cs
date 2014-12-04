@@ -17,7 +17,7 @@ namespace Assets.Game.Equipment
         private bool timerActive;
         void Start()
         {
-            Damage = 1f;
+            Damage = 20f;
             Cooldown = 0.40f;
             baseCooldown = Cooldown;
             Duration = 0.05f;
@@ -36,9 +36,8 @@ namespace Assets.Game.Equipment
                 dhe.Damage = this.Damage;
                 dhe.Source = this;
                 go.transform.parent = transform;
-                go.transform.position = (transform.position + transform.up * 0.6f);
+                go.transform.position = (transform.position + transform.up * 1f - transform.forward * 0.6f);
                 go.transform.Rotate(0, transform.rotation.eulerAngles.y, 0);
-                StartCoroutine(DestroyProjectile(go, 0));
             }
         }
 
@@ -73,5 +72,5 @@ namespace Assets.Game.Equipment
             GUI.Box(new Rect(10,10, 100, 50),this.timeWithoutHit.ToString());
             GUI.Box(new Rect(10, 120, 100, 50), this.Cooldown.ToString());
         }
-    }
+    }   
 }

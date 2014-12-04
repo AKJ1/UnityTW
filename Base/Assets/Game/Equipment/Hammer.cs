@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,6 @@ namespace Assets.Game.Equipment
     class Hammer : Weapon
     {
         private float Knockback;
-        
         public override void Attack()
         {
             if (!this.OnCooldown)

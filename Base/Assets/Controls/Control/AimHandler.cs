@@ -40,6 +40,7 @@ namespace Assets.Controls
             if (activeScheme != null)
             {
                 activeScheme();
+                transform.rigidbody.angularVelocity = Vector3.zero;
             }
             else
             {

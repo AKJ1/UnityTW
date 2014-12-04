@@ -23,10 +23,14 @@ namespace Assets.Game.Equipment
                 Vector3 direction = heading / distance;
                 target.transform.rigidbody.AddForce(new Vector3(direction.x, 0, direction.z) * 200f);
                 victim.TakeDamage(Damage);
-                Debug.Log(victim.Health);
             }
 
             alreadyHit.Add(target.gameObject);
+        }
+
+        void OnParticleCollision(GameObject c)
+        {
+            Debug.Log(c);
         }
     }
 }
