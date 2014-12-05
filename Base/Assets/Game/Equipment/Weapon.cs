@@ -1,23 +1,25 @@
-﻿ using System;
- using System.Collections;
- using System.Collections.Generic;
-using System.Linq;
-using System.Text;
- using Assets.Game.Characters;
- using UnityEngine;
-
-namespace Assets.Game.Equipment
+﻿namespace Assets.Game.Equipment
 {
+    using System.Collections;
+    using Characters;
+    using UnityEngine;
     public abstract class Weapon : MonoBehaviour
     {
-        public float Damage = 10f;
-        public float Cooldown = 0.0f;
-        public float Duration = 0.5f;
-        public bool OnCooldown;
-        public WeaponType Type;
+        #region Base Variables
+        protected float Damage = 10f;
+        protected float Cooldown = 0.0f;
+        protected float Duration = 0.5f;
+        protected bool OnCooldown;
+        public WeaponType WeaponType { get; set; }
+
+        #endregion
+
+        #region Abstract Methods
         public abstract void Attack();
+        protected abstract void HitEffects(Collider target, GameObject go);
+        #endregion
 
-
+        #region Helper Methods
         protected virtual IEnumerator Heat()
         {
             this.OnCooldown = true;
@@ -29,33 +31,19 @@ namespace Assets.Game.Equipment
         {
             person.Health -= this.Damage;
         }
-        protected IEnumerator DestroyProjectile(GameObject go, float animationDelay)
+        protected void AddHitEffects(GameObject projectile)
         {
-            go.gameObject.SetActive(false);
-            yield return new WaitForSeconds(animationDelay);
-            go.gameObject.SetActive(true);
-            yield return new WaitForSeconds(this.Duration);
-            Destroy(go);
-
+            Equipment.HitEffects projectileEffect = projectile.AddComponent<HitEffects>();
+            projectileEffect.HitActions += this.HitEffects;
         }
-        //void OnCollisionEnter(Collision c)
-        //{
-        //    Debug.Log("fucko");
-        //    if (c.gameObject.tag == "character")
-        //    {
-        //        Debug.Log("fucko");
-        //        Character victim = c.gameObject.GetComponent<Character>();
-        //        ApplyDamage(victim);
-        //    }
-
-        //}
-
+        #endregion
     }
     public enum WeaponType
     {
         Sword,
         Hammer,
-        Gun,
-
+        Dagger,
+        Bow,
+        Shotgun
     }
 }

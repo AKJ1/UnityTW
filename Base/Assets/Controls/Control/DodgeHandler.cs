@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Assets.Controls;
+﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Control_Scripts.Control
+namespace Assets.Controls.Control
 {
     class DodgeHandler : MonoBehaviour
     {
@@ -15,30 +10,30 @@ namespace Assets.Control_Scripts.Control
         {
             this.isActive = false;
         }
-
         public void Activate()
         {
             this.isActive = true;
         }
-
         private bool isActive;
         private float dodgeSpeed;
         private float dodgeTime;
         private float dodgeCooldown;
         private bool dodgeAvailable;
+        private bool init;
         #endregion
         #region Unity Methods
         void FixedUpdate()
         {
+
+            if (!init)
+            {
+                init = true;
+                InitializeValues();
+            }
             if (isActive)
             {
-                DodgeTrigger();   
+                DodgeTrigger();
             }
-        }
-
-        void Start()
-        {
-            InitializeValues();
         }
         #endregion
         #region Variable Setup Methods
@@ -54,15 +49,13 @@ namespace Assets.Control_Scripts.Control
         #region Dodge Logic
         void DodgeTrigger()
         {
-            if (Input.GetButton("Dodge") && MovementVariables.ControlsAvailable && this.dodgeAvailable )
+            if (Input.GetButton("Dodge") && MovementVariables.ControlsAvailable && this.dodgeAvailable)
             {
                 StartCoroutine(Dodge());
-            }   
+            }
         }
-
         private IEnumerator Dodge()
         {
-            
             transform.rigidbody.velocity = gameObject.GetComponent<MovementHandler>().MovementDirection.normalized * dodgeSpeed;
             MovementVariables.ControlsAvailable = false;
             this.dodgeAvailable = false;
@@ -74,12 +67,11 @@ namespace Assets.Control_Scripts.Control
             this.dodgeAvailable = true;
             yield break;
         }
-
         private IEnumerator Animate()
         {
             TrailRenderer trail = gameObject.GetComponent<TrailRenderer>();
             trail.enabled = true;
-            yield return new WaitForSeconds(dodgeTime + trail.time*1.2f);
+            yield return new WaitForSeconds(dodgeTime + trail.time * 1.2f);
             trail.enabled = false;
             yield break;
         }

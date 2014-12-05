@@ -7,14 +7,11 @@ using UnityEngine;
 
 namespace Assets.Game.Characters.Enemies
 {
-    class Charger : Character
+    class Charger : Enemy
     {
-        private GameObject target;
         private float chargeSpeed;
         private float chargeDuration;
         private float chargeBuildup;
-        private bool isBusy;
-        private Dictionary<string, bool> states = new Dictionary<string, bool>();
 
         private readonly Color standardColor = new Color(255,255,255);
         private readonly Color chargeColor = new Color(255,0,0);
@@ -22,7 +19,7 @@ namespace Assets.Game.Characters.Enemies
         
         void Update()
         {
-            if (!isBusy)
+            if (!IsBusy)
             {
                 DecideActions();
             }
@@ -40,33 +37,31 @@ namespace Assets.Game.Characters.Enemies
             this.chargeDuration = .4f;
             this.chargeBuildup = 0.8f;
             this.Invulnerable = false;
-            states.Add("isFollowing", false);
-            states.Add("isWandering", false);
-            states.Add("isCharging", false);
-            states.Add("isIdling", true);
+            States.Add("isFollowing", false);
+            States.Add("isWandering", false);
+            States.Add("isCharging", false);
+            States.Add("isIdling", true);
         }
 
-        void ChangeState(string newState)
+        protected override void Attack()
         {
-            foreach (var state in states.ToArray())
-            {
-                states[state.Key] = false;
-            }
-            switch (newState)
-            {
-                case "Following":
-                    states["isFollowing"] = true;
-                    break;
-                case "Charging":
-                    states["isCharging"] = true;
-                    break;
-                case "Wandering":
-                    states["isWandering"] = true;
-                    break;
-                case "Idling":
-                    states["isIdling"] = true;
-                    break;
-            }
+            StartCoroutine(Charge());
+        }
+
+        protected IEnumerator Charge()
+        {
+            StartCoroutine(ChargeWarning(chargeBuildup));
+            transform.LookAt(Target.transform);
+            transform.rotation = Quaternion.Euler(90, transform.rotation.y, 0);
+
+            Vector3 direction = Target.transform.position - transform.position;
+            direction.Normalize();
+            yield return new WaitForSeconds(chargeBuildup);
+            transform.rigidbody.velocity = direction * chargeSpeed * 3;
+            yield return new WaitForSeconds(chargeDuration);
+            transform.rigidbody.velocity = Vector3.zero;
+            IsBusy = false;
+            StartCoroutine(Idle());
         }
 
         IEnumerator ChargeWarning(float length)
@@ -75,7 +70,7 @@ namespace Assets.Game.Characters.Enemies
             {
                 length -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
-                StartCoroutine(BlinkRed(length/4));
+                StartCoroutine(BlinkRed(length / 4));
             }
             transform.renderer.material.color = standardColor;
         }
@@ -86,86 +81,30 @@ namespace Assets.Game.Characters.Enemies
             yield return new WaitForSeconds(time);
             transform.renderer.material.color = standardColor;
         }
-        IEnumerator Charge()
-        {
-            StartCoroutine(ChargeWarning(chargeBuildup));
-            transform.LookAt(target.transform);
-            transform.rotation = Quaternion.Euler(90, transform.rotation.y, 0);
 
-            Vector3 direction = target.transform.position - transform.position;
-            direction.Normalize();
-            yield return new WaitForSeconds(chargeBuildup);
-            transform.rigidbody.velocity = direction * chargeSpeed * 3;
-            yield return new WaitForSeconds(chargeDuration);
-            transform.rigidbody.velocity = Vector3.zero;
-            isBusy = false;
-            StartCoroutine(Idle());
-        }
-
-        IEnumerator Idle()
+        protected override void DecideActions()
         {
-            ChangeState("Idling");
-            Debug.Log("idling");
-            yield return new WaitForSeconds(1f);
-            isBusy = false;
-        }
-        IEnumerator Wander()
-        {
-            Vector3 rndPoint = UnityEngine.Random.insideUnitCircle;
-            Vector3 direction = rndPoint - transform.position;
-            direction.Normalize();
-            transform.LookAt(direction);
-            transform.rotation = Quaternion.Euler(90, transform.rotation.y, 0);
-            transform.rigidbody.velocity = direction * MovementSpeed;
-            yield return new WaitForSeconds(DetermineBreakTime());
-            isBusy = false;
-        }
-
-        IEnumerator Follow()
-        {
-            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-            while (distanceToTarget >= 2f && distanceToTarget <= 8f)
+            if (States["isWandering"] || States["isFollowing"] || States["isIdling"])
             {
-                distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-                transform.LookAt(target.transform);
-                transform.rotation = Quaternion.Euler(90, transform.rotation.y, 0);
-                Vector3 direction = target.transform.position - transform.position;
-                direction.Normalize();
-                transform.rigidbody.velocity = direction * MovementSpeed;
-                yield return new WaitForEndOfFrame();
-            }
-            isBusy = false;
-        }
-        private float DetermineBreakTime()
-        {
-            return UnityEngine.Random.Range(1.5f, 4f);
-        }
-
-        public float MovementSpeed { get; set; }
-
-        void DecideActions()
-        {
-            if (states["isWandering"] || states["isFollowing"] || states["isIdling"])
-            {
-                isBusy = true;
+                IsBusy = true;
                 transform.rigidbody.velocity = Vector3.zero;
-                float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+                float distanceToTarget = Vector3.Distance(transform.position, Target.transform.position);
                 if (distanceToTarget <= 2f)
                 {
-                    ChangeState("Charging");
-                    StartCoroutine(Charge());
+                    ChangeState("Attacking");
+                    Attack();
                 }
                 else if (distanceToTarget <= 8f)
                 {
-                    Debug.Log("following");
                     ChangeState("Following");
                     StartCoroutine(Follow());
+                    Debug.Log("following");
                 }
                 else if (distanceToTarget <= 15f)
                 {
-                    Debug.Log("wandering");
                     ChangeState("Wandering");
                     StartCoroutine(Wander());
+                    Debug.Log("wandering");
                 }
                 else
                 {
@@ -176,9 +115,5 @@ namespace Assets.Game.Characters.Enemies
             }
         }
 
-        void LocateTarget()
-        {
-            this.target = GameObject.Find("Player");
-        }
     }
 }

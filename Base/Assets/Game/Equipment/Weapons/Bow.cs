@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-
-namespace Assets.Game.Equipment
+﻿namespace Assets.Game.Equipment.Weapons
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using Characters;
+    using UnityEngine;
     class Bow : Weapon
     {
+        #region Variables
+        
         public GameObject BowProjectile = WeaponGlobals.BowProjectile;
         public GameObject ExactProjectile = WeaponGlobals.BowProjectileExact;
         public float ActiveDamage;
@@ -17,10 +16,15 @@ namespace Assets.Game.Equipment
         public int ProjectilePower;
         public float ChargeTime;
 
+
+        public bool CanPenetrate { get; set; }
         private bool perfectShot;
         private Color exactColor = new Color(0,255,255);
         private Color normalColor = new Color();
 
+        #endregion
+
+        #region AttackLogic
         public override void Attack()
         {
             if (!this.OnCooldown)
@@ -39,14 +43,15 @@ namespace Assets.Game.Equipment
                 if (this.ElapsedTime < this.ChargeTime)
                 {
                     this.ElapsedTime += Time.deltaTime;
-                }else if(!windowStarted)
+                }
+                else if (!windowStarted)
                 {
                     StartCoroutine(PerfectWindow());
                     windowStarted = true;
                 }
                 yield return new WaitForFixedUpdate();
             }
-            ProjectilePower = (int) (this.ElapsedTime/this.ChargeTime*100);
+            ProjectilePower = (int)(this.ElapsedTime / this.ChargeTime * 100);
             Debug.Log(perfectShot);
             FireProjectile();
             if (ProjectilePower == 100)
@@ -78,20 +83,23 @@ namespace Assets.Game.Equipment
             this.ActiveDamage = this.Damage * projectileRatio;
 
             GameObject projectile = this.perfectShot ? (GameObject)Instantiate(ExactProjectile) : (GameObject)Instantiate(BowProjectile); // change with animation prefab;
-            BowHitEffects hitEffects = projectile.AddComponent<BowHitEffects>(); // Done for collision handling
-
+            AddHitEffects(projectile);
 
             projectile.transform.position = (transform.position + transform.up * 2f);
             projectile.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0);
             if (this.perfectShot)
             {
-                hitEffects.CanPenetrate = true;
+                this.CanPenetrate = true;
                 this.perfectShot = false;
             }
-            hitEffects.Damage = this.ActiveDamage;
+            else
+            {
+                this.CanPenetrate = false;
+            }
             projectile.rigidbody.velocity = Quaternion.Euler(0, transform.rotation.y, 0) * transform.up * projectileRatio * 30;
-            StartCoroutine(DestroyProjectile(projectile, 0));
+            Destroy(projectile, this.Duration);
         }
+
 
         private float DetermineRatio()
         {
@@ -109,18 +117,45 @@ namespace Assets.Game.Equipment
             {
                 projectileRatio = 0.01f * ProjectilePower;
             }
-            
-            return projectileRatio;
 
+            return projectileRatio;
         }
+        #endregion
+
+        #region Hit Effects
+        protected override void HitEffects(Collider target, GameObject go)
+        {
+            List<GameObject> alreadyHit = new List<GameObject>();
+            if (target.transform.tag == "Enemy" && !alreadyHit.Contains(target.gameObject))
+            {
+                Character victim = target.gameObject.GetComponent<Character>();
+                victim.TakeDamage(Damage);
+                alreadyHit.Add(target.gameObject);
+                if (!CanPenetrate)
+                {
+                    Destroy(go);
+                }
+            }
+            else if (target.transform.tag != "Terrain" && target.transform.tag != "Enemy")
+            {
+                Debug.Log(target.gameObject);
+                Destroy(go);
+            }
+        }
+        #endregion
+
+        #region Setup Methods
+        
         void Start()
         {
             this.normalColor = renderer.material.color;
             Damage = 100f;
             Cooldown = 1.2f;
             Duration = 5.0f;
-            ChargeTime = 1.2f;
+            ChargeTime = .9f;
             PerfectWindowLength = 0.2f;
         }
+
+        #endregion
     }
 }

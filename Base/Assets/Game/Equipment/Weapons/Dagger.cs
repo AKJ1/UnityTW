@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using UnityEngine;
-
-namespace Assets.Game.Equipment
+﻿namespace Assets.Game.Equipment.Weapons
 {
-    class Dagger : Sword
+    using System.Collections;
+    using UnityEngine;
+    using System.Collections.Generic;
+    using Characters;
+    class Dagger : Weapon
     {
+        #region Variables
         private int reductionCount;
         private float reductionLength;
         private float timeWithoutHit;
         private float baseCooldown;
         private bool timerActive;
+        #endregion
+
+        #region Setup Methods
         void Start()
         {
             Damage = 20f;
@@ -23,6 +23,9 @@ namespace Assets.Game.Equipment
             Duration = 0.05f;
             reductionLength = 2f;
         }
+        #endregion
+
+        #region Attack Logic
         public override void Attack()
         {
             if (!this.OnCooldown)
@@ -32,15 +35,28 @@ namespace Assets.Game.Equipment
                 
 
                 GameObject go = (GameObject)Instantiate(WeaponGlobals.DaggerPrefab); // change with animation prefab;
-                DaggerHitEffects dhe = go.AddComponent<DaggerHitEffects>(); // Done for collision handling
-                dhe.Damage = this.Damage;
-                dhe.Source = this;
-                go.transform.parent = transform;
+                AddHitEffects(go);
                 go.transform.position = (transform.position + transform.up * 1f - transform.forward * 0.6f);
                 go.transform.Rotate(0, transform.rotation.eulerAngles.y, 0);
             }
         }
+        #endregion
 
+        #region HitEffects
+        protected override void HitEffects(Collider target, GameObject go)
+        {
+            List<GameObject> alreadyHit = new List<GameObject>();
+            if (target.transform.tag == "Enemy" && !alreadyHit.Contains(target.gameObject))
+            {
+                Character victim = target.gameObject.GetComponent<Character>();
+                victim.TakeDamage(Damage);
+                HitAchieved();
+            }
+            alreadyHit.Add(target.gameObject);
+        }
+        #endregion
+
+        #region Combo Hit Effects
         public void HitAchieved()
         {
             if (!timerActive)
@@ -66,11 +82,14 @@ namespace Assets.Game.Equipment
             this.timerActive = false;
             Cooldown = baseCooldown;
         }
+        #endregion
 
+        #region GUI
         void OnGUI()
         {
             GUI.Box(new Rect(10,10, 100, 50),this.timeWithoutHit.ToString());
             GUI.Box(new Rect(10, 120, 100, 50), this.Cooldown.ToString());
         }
+        #endregion
     }   
 }

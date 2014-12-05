@@ -16,7 +16,7 @@ namespace Assets.Controls
             switch (currentState)
             {
                 case PlayerState.Attacking:
-                    animator.Play("Attacking" + AnimationVariables.PlayerCharacter.Weapon.Type.ToString());
+                    animator.Play("Attacking" + AnimationVariables.PlayerCharacter.Weapon.WeaponType.ToString());
                     break;
                 default:
                     animator.Play(currentState.ToString());

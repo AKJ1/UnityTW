@@ -10,7 +10,6 @@ namespace Assets.Controls
     {
         public Vector3 AimDirection;
         private ControlDelegate activeScheme;
-
         private LayerMask mask = 8;
         #region Events
         private void SwitchMovement(object sender, ControlMethod ctrl)
@@ -42,10 +41,6 @@ namespace Assets.Controls
                 activeScheme();
                 transform.rigidbody.angularVelocity = Vector3.zero;
             }
-            else
-            {
-                //this.Controller = ControlMethod.Keyboard;
-            }
         }
         #endregion
         #region Control Logic
@@ -76,7 +71,7 @@ namespace Assets.Controls
                     Vector3 targetPosition = hit.point - transform.position;
                     targetPosition.Normalize();
                     var angle = Mathf.Atan2(targetPosition.x, targetPosition.z) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90, angle, 0), 0.3f);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90, angle, 0), 0.4f);
                     this.AimDirection = Quaternion.Euler(90, angle, 0) * (Vector3.forward + Vector3.right);
                 }
             }

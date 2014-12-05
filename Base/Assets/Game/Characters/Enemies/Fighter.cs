@@ -7,5 +7,6 @@ namespace Assets.Game.Characters.Enemies
 {
     class Fighter
     {
+        //Walks up to player and does the sword combo
     }
 }

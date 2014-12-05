@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-
-namespace Assets.Game.Equipment
+﻿namespace Assets.Game.Equipment.Weapons
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using Characters;
+    using UnityEngine;
     class Shotgun : Weapon
     {
+        #region Varibles
         private int projectileCount;
         private float scatterArc;
         private float projectileSpeed;
-        private GameObject shotgunProjectile = WeaponGlobals.ShotgunProjectile;
+        private readonly GameObject shotgunProjectile = WeaponGlobals.ShotgunProjectile;
+        #endregion
+
+        #region Attack Logic
         public override void Attack()
         {
             if (!OnCooldown)
@@ -21,7 +22,6 @@ namespace Assets.Game.Equipment
                 StartCoroutine(SpawnProjectiles());
             }
         }
-
         IEnumerator SpawnProjectiles()
         {
             float currentAngle = -scatterArc/2;
@@ -30,17 +30,21 @@ namespace Assets.Game.Equipment
             {
                 GameObject go = (GameObject) Instantiate(shotgunProjectile, transform.position + (transform.up * 0.5f), new Quaternion());
                 go.transform.RotateAround(transform.position, Vector3.up, currentAngle);
-                ShotgunHitEffects she = go.AddComponent<ShotgunHitEffects>();
-                she.Damage = this.Damage;
+
                 Vector3 direction = go.transform.position - transform.position;
                 direction.Normalize();
                 go.rigidbody.velocity = direction * 40f;
+
+                AddHitEffects(go);
+                
                 currentAngle += angleStep;
-                StartCoroutine(DestroyProjectile(go, 0f));
             }
+            
             yield break;
         }
+        #endregion
 
+        #region Setup Methods
         void Start()
         {
             this.Damage = 20f;
@@ -49,5 +53,21 @@ namespace Assets.Game.Equipment
             this.scatterArc = 60f;
             this.projectileCount = 8;
         }
+        #endregion
+
+        #region Hit Effects
+        protected override void HitEffects(Collider target, GameObject go)
+        {
+            List<GameObject> alreadyHit = new List<GameObject>();
+            if (target.transform.tag == "Enemy" && !alreadyHit.Contains(target.gameObject))
+            {
+                alreadyHit.Add(target.gameObject);
+                Character victim = target.transform.GetComponent<Character>();
+                victim.TakeMinorDamage(Damage);
+                go.SetActive(false);
+                Destroy(go, 0.2f);
+            }
+        }
+        #endregion
     }
 }

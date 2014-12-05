@@ -104,6 +104,7 @@ namespace Assets.Controls
             Vector3 deltaZ = z * (Quaternion.Euler(0, 45, 30) * Vector3.forward);
             this.MovementDirection = (deltaZ + deltaX).normalized * this.MoveSpeed;
             transform.rigidbody.velocity = this.MovementDirection;
+            transform.rigidbody.angularVelocity = Vector3.zero;
         }
         #endregion
     }

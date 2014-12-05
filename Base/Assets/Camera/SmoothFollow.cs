@@ -23,7 +23,7 @@ namespace Assets.Camera
         }
         void Follow()
         {
-            targetPosition = target.transform.position - new Vector3(7,0,6);
+            targetPosition = target.transform.position - new Vector3(7,target.transform.position.y + 20,6);
             transform.position = Vector3.Slerp(
                 transform.position,
                 new Vector3(Mathf.Clamp(targetPosition.x, -100, 100), initialY, Mathf.Clamp(targetPosition.z, -100, 100)),

@@ -54,10 +54,8 @@ namespace Assets.Game.Characters
             transform.tag = "Character";
             DamageTaken += () => StartCoroutine(GoInvulnerable());
         }
-        public void Attack()
-        {
-            Weapon.Attack();
-        }
+        protected abstract void Attack();
+
         public void Kill()
         {
             this.Invulnerable = true;
